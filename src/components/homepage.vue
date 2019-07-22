@@ -1,6 +1,6 @@
 <template>
     <div>
-        <HeaderGuide></HeaderGuide>  
+        <!-- <HeaderGuide></HeaderGuide>   -->
         <div class="side-menu-wrap">
             <button class="side-menu-close"><span></span></button>
             <div class="side-menu-inner">
@@ -650,7 +650,7 @@
                 </div>
             </div>
         </div>
-        <FooterGuide></FooterGuide>  
+        <!-- <FooterGuide></FooterGuide>   -->
     </div>
 </template>
 
@@ -668,11 +668,11 @@
 
 <script>
     export default {
-        components: {  
-            HeaderGuide: require('./HeaderGuide.vue').default , 
-            FooterGuide: require('./FooterGuide.vue').default  
-        },  
-        methods: {},  
+        // components: {  
+        //     HeaderGuide: require('./HeaderGuide.vue').default , 
+        //     FooterGuide: require('./FooterGuide.vue').default  
+        // },  
+        // methods: {},  
 
     }
 </script>

@@ -55,7 +55,7 @@
                 <div class="col-8 col-lg-3 col-xl-3">
                     <div class="header-shop-links">
                         <div class="shop-links-item header-search">
-                            <a href="javascript:void(0)" class="btn-src"><img src="../assets/images/icons/search.png" alt="Search"></a>
+                            <a href="javascript:void(0)" class="btn-src"><el-button type="text" @click="open3"><img src="../assets/images/icons/search.png" alt="Search"></el-button></a>
                             <a href="javascript:void(0)" class="btn-close"><img src="../assets/images/icons/close.png" alt="Close"></a>
                             <div class="search-content-wrap">
                                 <form action="#" method="post">
@@ -64,42 +64,15 @@
                                 </form>
                             </div>
                         </div>
-
-                        <div class="shop-links-item header-mini-cart">
-                            <a href="cart.html"><img src="../assets/images/icons/cart.png" alt="Cart">
-                                $420<span>(10)</span></a>
-
-                            <div class="mini-cart-wrap mobile-small-right">
-                                <div class="mini-cart-product">
-                                    <a href="single-product.html" class="image"><img
-                                            src="../assets/images/product/product-1.png" alt=""></a>
-                                    <div class="content">
-                                        <h5 class="title"><a href="single-product.html">Injected humour</a></h5>
-                                        <span>$799.99</span>
-                                    </div>
-                                    <a href="#" class="remove"><i class="fa fa-trash"></i></a>
-                                </div>
-                                <div class="mini-cart-product">
-                                    <a href="single-product.html" class="image"><img
-                                            src="../assets/images/product/product-2.png" alt=""></a>
-                                    <div class="content">
-                                        <h5 class="title"><a href="single-product.html">Classical literature</a></h5>
-                                        <span>$799.99</span>
-                                    </div>
-                                    <a href="#" class="remove"><i class="fa fa-trash"></i></a>
-                                </div>
-
-                                <h4 class="total">Total <span>$1599.98</span></h4>
-
-                                <div class="buttons">
-                                    <a href="checkout.html">checkout</a>
-                                </div>
-
-                            </div>
+                        <div class="shop-links-item header-mini-cart" v-if='userName'>
+                            <a @click='$router.push({path:"/cart",query:{userName:userName}})'><img src="../assets/images/icons/cart.png" alt="Cart"></a>
                         </div>
 
-                        <div class="shop-links-item header-account mr-lg-0">
+                        <div class="shop-links-item header-account mr-lg-0"  v-if='userName'>
                             <a href="login-register.html"><img src="../assets/images/icons/user.png" alt="Account"></a>
+                        </div>
+                         <div class="shop-links-item header-account mr-lg-0"  v-else style='width:100px'>
+                            <a  @click='$router.push({path:"/userLogin"})'> 登录  </a>
                         </div>
 
                         <div class="shop-links-item header-menu-icon d-lg-none">
@@ -114,8 +87,32 @@
 
 <script>
   export default {
+      data() {
+          return {
+              userName:localStorage.getItem("userName"),
+
+          }
+      },
     methods: {
-      
+        sentData(data) {
+            this.$router.push({
+                path: `/search/${data}`,
+            })
+        },
+        open3() {
+            let self = this;
+            this.$prompt('请输入检索内容', '提示', {
+                confirmButtonText: '确定',
+                cancelButtonText: '取消',
+            }).then(({ value }) => {
+                self.sentData(value);
+            }).catch(() => {
+                this.$message({
+                    type: 'info',
+                    message: '取消输入'
+                });       
+            });
+      }
     }
   }
 </script>

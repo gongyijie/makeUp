@@ -89,8 +89,8 @@
                 let self = this;
                 this.$axios.post('/user/login',user).then(function (response) {
                     var data = response.data;
-                    if (data.code == 0) {
-                        localStorage.setItem('userAccount',self.ruleForm.email);
+                    if (response.code == 0) {
+                        localStorage.setItem('user',data);
                         let urls =  `/`;
                         window.location.href = urls;
                     }else {

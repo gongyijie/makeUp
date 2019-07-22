@@ -1,22 +1,22 @@
 <template>
     <div id="app">
-        <!-- <HeaderGuide/> -->
+        <HeaderGuide v-show="!$route.meta.showHeader"/>
         <router-view/>
-        <!-- <FooterGuide/> -->
+        <FooterGuide v-show="!$route.meta.showFooter"/>
     </div>
 </template>
 
 <script>
-    // import HeaderGuide from './components/HeaderGuide.vue'
-    // import FooterGuide from './components/FooterGuide.vue'
+    import HeaderGuide from './components/HeaderGuide.vue'
+    import FooterGuide from './components/FooterGuide.vue'
 
     import 'font-awesome/css/font-awesome.min.css'
     
     export default {
         name: 'App' ,
-        // components: {
-        //     FooterGuide,
-        //     HeaderGuide
-        // }
+        components: {
+            FooterGuide,
+            HeaderGuide
+        }
     }
 </script>
